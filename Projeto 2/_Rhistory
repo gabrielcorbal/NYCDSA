@@ -1,0 +1,512 @@
+filter(births, year == 1900 & sex == 'girl' | year == 2000 & sex == 'girl') %>% summarise(n())
+filter(births, year == 1900 & sex == 'girl' | year == 2000 & sex == 'girl') %>% summarise(n())
+filter(births, year == 1900 & sex == 'girl' | year == 2000 & sex == 'girl')
+ex33 = bnames %>% filter(name == 'Gabriel') %>%  arrange(., -prop) %>%summarise(first(year))
+ex33
+x = data.frame( name = c("John", "Paul", "George",
+"Ringo", "Stuart", "Pete"),
+instrument = c("guitar", "bass", "guitar",
+"drums", "bass", "drums"),
+stringsAsFactors = FALSE)
+x
+y <- data.frame( name = c("John", "Paul", "George",
+"Ringo", "Brian"),
+band = c(TRUE, TRUE, TRUE,
+TRUE, FALSE),
+stringsAsFactors = FALSE)
+y
+inner_join(x, y, by = "name")
+left_join(x, y, by = "name")
+right_join(x, y, by = "name")
+full_join(x, y, by = 'name')
+semi_join(x, y, by = "name") #similar to inner join but keeps colums from left
+anti_join(x, y, by = "name")
+bnames2 = inner_join(bnames, births,
+by = c("year","sex"))
+bnames2 = bnames2 %>% mutate(., n = round(prop * births))
+head(bnames2)
+gabriel = filter(bnames2,
+name == 'Gabriel')
+sum(gabriel$n)
+gabriel2 = filter(bnames2,
+name == 'Gabriel',
+yearh == '1995')
+gabriel2 = filter(bnames2,
+name == 'Gabriel',
+year == '1995')
+sum(gabriel2$n)
+df
+bnames2 %>%
+group_by(., year, sex) %>%
+summarise(births=first(births))
+str(df2) #what’s still awry?
+df2 <- df %>% rbind(., c("black", 5))
+str(df2) #what’s still awry?
+df2 %>%
+transmute(., color, value=as.numeric(value)) %>%
+distinct() %>%
+group_by(color) %>%
+summarise(total=sum(value))
+head(data2)
+folder <- "names/"
+file_list <- list.files(path=folder, pattern="*.txt")
+# read in each .txt file in file_list and rbind them into a data frame called data
+data <-
+do.call("rbind",
+lapply(file_list,
+function(x)
+read.table(paste(folder, x, sep=''),
+header = FALSE,
+stringsAsFactors = FALSE)))
+data2 <- data.frame(do.call('rbind', strsplit(data$V1,',',fixed=TRUE)))
+data2 <- data.frame(do.call('rbind', strsplit(data$V1,',',fixed=TRUE)))
+colnames(data2) <- c("name","sex","number")
+library(wbstats)
+install.packages('wbstats')
+str(wb_cachelist, max.level = 1)
+library(wbstats)
+str(wb_cachelist, max.level = 1)
+unemploy_vars <- wbsearch(pattern = "unemployment")
+head(unemploy_vars)
+View(unemploy_vars)
+?wb
+sd(test3$COVERAGE.PERIOD, na.rm = T)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+require(xlsx)
+install.packages('xlsx')
+library(xlsx)
+install.packages("readxl")
+library("readxl")
+setwd("~/1. PYTHON/Selenium")
+df = read_excel('databaseglobo.xlsx')
+head(df, 4)
+View(df)
+#Taking off repeated values
+df1 = df[!duplicated(df$Titulo), ]
+df1 = complete.cases(df1)
+#Taking off repeated values
+df1 = df[!duplicated(df$Titulo), ]
+df1 = df[complete.cases(df),]
+#Taking off repeated values
+df1 = df[!duplicated(df$Titulo), ]
+df1 = df1[complete.cases(df1),]
+df = read_excel('databaseglobo.xlsx')
+#Taking off repeated values
+df1 = df[!duplicated(df$Titulo), ]
+df1$Dia = gsub(x = df$Dia, replacement = '', pattern =  "\\s\\d*[h]\\d*")
+df1$Dia = gsub(x = df1$Dia, replacement = '', pattern =  "\\s\\d*[h]\\d*")
+df1$Dia = dmy(df$Dia)
+df1$Dia = dmy(df1$Dia)
+View(df1)
+View(df1)
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha"
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong",
+))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha"
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong"
+))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha"
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong"))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha"
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong"))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong"))
+sum(is.na(df2$Onde))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Descri, df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Quito", x = df1$Descri, df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Descri, df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Descri, df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Espanha", x = df1$Descri, df$Titulo) ~"Espanha",
+grepl("Hong Kong", x = df1$Descri, df$Titulo) ~"Hong Kong"))
+sum(is.na(df2$Onde))
+df3 = df2 %>%
+mutate(Mes = format(as.Date(df2$Dia,format="%Y-%m-%d"),"%Y-%m"))
+View(df3)
+theme_set(
+theme_bw() +
+theme(legend.position = "top")
+)
+p = ggplot(df3, aes(Mes))
+p
+p + geom_bar()
+p + geom_bar(axis(las = 2))
+p + geom_bar()
+p + geom_bar() +  theme(axis.text.x = element_text(angle = 90))
+p + geom_bar() +  theme(axis.text.x = element_text(angle = 90)) + ylab(label = '# of news')
+p + geom_bar() +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+View(df3)
+p + geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pchile = df3 %>%
+filter(Onde == 'Chile') %>%
+ggplot(df3, aes(Mes))
+pchile = df3 %>%
+filter(Onde == 'Chile') %>% ggplot(df3, aes(Mes))
+pchile = df3 %>%
+filter(Onde == 'Chile')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+sum(is.na(df3$Mes))
+View(df3)
+df3$Mes[is.na(df3$Mes)] = "2019-10"
+sum(is.na(df3$Mes))
+pchile = df3 %>%
+filter(Onde == 'Chile')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pequador= df3 %>%
+filter(Onde == 'Equador')
+ggplot(pequador, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pvene, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pvene= df3 %>%
+filter(Onde == 'Venezuela')
+ggplot(pvene, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+puk= df3 %>%
+filter(Onde == 'UK')
+ggplot(puk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pes= df3 %>%
+filter(Onde == 'Espanha')
+ggplot(pes, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+phk= df3 %>%
+filter(Onde == 'Hong Kong')
+ggplot(phk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+p + geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+p + geom_bar(fill = "#FF44444") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+p + geom_bar(fill = "#87CEFA") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+df3$Mes[is.na(df3$Mes)] = "2019-10"
+#News about Protest overtime
+p = ggplot(df3, aes(Mes))
+p + geom_bar(fill = "#87CEFA") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+my_mat = data.frame(rep(1:5, 10))
+View(my_mat)
+my_mat = data.frame(rep('a','b','c', 10))
+View(my_mat)
+?data.frame
+my_mat = data.frame(1, 1:10, sample(L3, 10, replace = TRUE))
+L3 <- LETTERS[1:3]
+my_mat = data.frame(1, 1:10, sample(L3, 10, replace = TRUE))
+View(my_mat)
+View(my_mat)
+test = my_mat %>%
+mutate(Test =  sample(L3, 10, replace = TRUE))
+View(test)
+test2 = test %>%
+mutate(OBS = case_when(grepl("A", x = test2$sample.L3..10..replace...TRUE., test2$Test) ~ "A"))
+test2 = test %>%
+mutate(OBS = case_when(grepl("A", x = test2$sample.L3..10..replace...TRUE., test2$Test) ~ "A"))
+test2 = test %>%
+mutate(OBS = case_when(grepl("A", x = test2$sample.L3..10..replace...TRUE., test2$Test) ~ "A"))
+test2 = test %>%
+mutate(OBS = case_when(grepl("A", x = sample.L3..10..replace...TRUE., Test) ~ "A"))
+View(test2)
+test2 = test %>%
+mutate(OBS = case_when(grepl("A", x = c(sample.L3..10..replace...TRUE. | Test)) ~ "A"))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri) ~ "Chile",
+grepl("Santiago", x = df1$Descri) ~ "Chile",
+grepl("Chile", x = df$Titulo) ~ "Chile",
+grepl("Santiago", x = df$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri) ~"Equador",
+grepl("Quito", x = df1$Descri) ~"Equador",
+grepl("Equador", x = df$Titulo) ~"Equador",
+grepl("Quito", x = df$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri) ~"Venezuela",
+grepl("Caracas", x = df1$Descri) ~"Venezuela",
+grepl("Venezuela", x = df$Titulo) ~"Venezuela",
+grepl("Caracas", x = df$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri) ~"UK",
+grepl("Inglaterra", x = df1$Descri) ~"UK",
+grepl("Londres", x = df$Titulo) ~"UK",
+grepl("Inglaterra", x = df$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri) ~"Espanha",
+grepl("Catal", x = df1$Descri) ~"Espanha",
+grepl("Espanha", x = df1$Descri) ~"Espanha",
+grepl("Barcelona", x = df$Titulo) ~"Espanha",
+grepl("Catal", x = df$Titulo) ~"Espanha",
+grepl("Espanha", x = df$Titulo) ~"Espanha",
+grepl("Hong Kong", x = df1$Descri) ~"Hong Kong",
+grepl("Hong Kong", x = df$Titulo) ~"Hong Kong"))
+df2 = df1 %>%
+mutate(Onde = case_when(grepl("Chile", x = df1$Descri) ~ "Chile",
+grepl("Santiago", x = df1$Descri) ~ "Chile",
+grepl("Chile", x = df1$Titulo) ~ "Chile",
+grepl("Santiago", x = df1$Titulo) ~ "Chile",
+grepl("Equador", x = df1$Descri) ~"Equador",
+grepl("Quito", x = df1$Descri) ~"Equador",
+grepl("Equador", x = df1$Titulo) ~"Equador",
+grepl("Quito", x = df1$Titulo) ~"Equador",
+grepl("Venezuela", x = df1$Descri) ~"Venezuela",
+grepl("Caracas", x = df1$Descri) ~"Venezuela",
+grepl("Venezuela", x = df1$Titulo) ~"Venezuela",
+grepl("Caracas", x = df1$Titulo) ~"Venezuela",
+grepl("Londres", x = df1$Descri) ~"UK",
+grepl("Inglaterra", x = df1$Descri) ~"UK",
+grepl("Londres", x = df1$Titulo) ~"UK",
+grepl("Inglaterra", x = df1$Titulo) ~"UK",
+grepl("Barcelona", x = df1$Descri) ~"Espanha",
+grepl("Catal", x = df1$Descri) ~"Espanha",
+grepl("Espanha", x = df1$Descri) ~"Espanha",
+grepl("Barcelona", x = df1$Titulo) ~"Espanha",
+grepl("Catal", x = df1$Titulo) ~"Espanha",
+grepl("Espanha", x = df1$Titulo) ~"Espanha",
+grepl("Hong Kong", x = df1$Descri) ~"Hong Kong",
+grepl("Hong Kong", x = df1$Titulo) ~"Hong Kong"))
+df3 = df2 %>%
+mutate(Mes = format(as.Date(df2$Dia,format="%Y-%m-%d"),"%Y-%m"))
+df3$Mes[is.na(df3$Mes)] = "2019-10"
+sum(is.na(df3$Mes))
+p + geom_bar(fill = "#87CEFA") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pchile = df3 %>%
+filter(Onde == 'Chile')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pequador= df3 %>%
+filter(Onde == 'Equador')
+ggplot(pequador, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pvene= df3 %>%
+filter(Onde == 'Venezuela')
+ggplot(pvene, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+puk= df3 %>%
+filter(Onde == 'UK')
+ggplot(puk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+pes= df3 %>%
+filter(Onde == 'Espanha')
+ggplot(pes, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+phk= df3 %>%
+filter(Onde == 'Hong Kong')
+ggplot(phk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+dfall <- join_all(list(pchile,pequador,pes)
+)
+library(plyr)
+dfall <- join_all(list(pchile,pequador,pes))
+View(dfall)
+dfall <- join_all(list(pchile,pequador,pes,phk,puk,pvene))
+View(dfall)
+dfall <- rbindl(list(pchile,pequador,pes,phk,puk,pvene))
+dfall <- rbind(list(pchile,pequador,pes,phk,puk,pvene))
+View(dfall)
+dfall <- rbind(pchile,pequador,pes,phk,puk,pvene)
+View(dfall)
+ggplot(dfall, aes(Mes)) +
+geom_bar(fill = Onde) +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(fill = 'Onde') +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(fill = dfall$Onde) +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(aes(color = dfall$Onde)) +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(aes(fill = dfall$Onde)) +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(aes(fill = dfall$Onde), position = "dodge") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pes, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+View(df3)
+View(df3)
+p + geom_bar(fill = "#87CEFA") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month') + ggtitle(Chile)
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month') + ggtitle('Chile')
+ggplot(pchile, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pequador, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pvene, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(pes, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(puk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(phk, aes(Mes)) +
+geom_bar(fill = "#FF6666") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
+ggplot(dfall, aes(Mes)) +
+geom_bar(aes(fill = dfall$Onde), position = "dodge") +
+theme(axis.text.x = element_text(angle = 90)) +
+ylab(label = '# of news') +
+xlab(label = 'Year - Month')
